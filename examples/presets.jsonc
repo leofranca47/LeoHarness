@@ -1,0 +1,93 @@
+{
+  "_comment": "Presets de modelos por agent para o Global Engineering Harness.",
+  "_usage": "Copie o conteúdo do preset desejado para ~/.config/opencode/opencode.jsonc. Os agents do harness herdam o modelo do primary agent por padrão; estes blocos definem overrides por agent.",
+  "_regra": "O install.sh / update.sh NUNCA tocam no opencode.jsonc — você cola manualmente.",
+
+  "presets": {
+
+    "rápido": {
+      "_descricao": "Todos os agents usam o mesmo modelo rápido/barato. Ideal para desenvolvimento diário e tarefas rotineiras.",
+      "_tradeoff": "Menos raciocínio profundo, mais velocidade e menor custo.",
+      "agent": {
+        "build":        { "model": "minimax/MiniMax-M3" },
+        "plan":         { "model": "minimax/MiniMax-M3" },
+        "architect":    { "model": "minimax/MiniMax-M3" },
+        "investigator": { "model": "minimax/MiniMax-M3" },
+        "debugger":     { "model": "minimax/MiniMax-M3" },
+        "reviewer":     { "model": "minimax/MiniMax-M3" }
+      }
+    },
+
+    "balanceado": {
+      "_descricao": "Mistura modelos: tarefas de codificação usam modelo rápido, tarefas que exigem raciocínio (arquitetura, debug, review) usam modelo mais forte.",
+      "_tradeoff": "Equilíbrio entre custo e qualidade. Bom para trabalho geral.",
+      "agent": {
+        "build":        { "model": "minimax/MiniMax-M3" },
+        "plan":         { "model": "kimi-for-coding/k3" },
+        "architect":    { "model": "kimi-for-coding/k3" },
+        "investigator": { "model": "minimax/MiniMax-M3" },
+        "debugger":     { "model": "kimi-for-coding/k3" },
+        "reviewer":     { "model": "kimi-for-coding/k3" }
+      }
+    },
+
+    "profundo": {
+      "_descricao": "Todos os agents usam o modelo mais forte disponível. Ideal para bugs críticos, refatorações grandes e decisões arquiteturais.",
+      "_tradeoff": "Máxima qualidade de raciocínio, maior custo e latência.",
+      "agent": {
+        "build":        { "model": "kimi-for-coding/k3" },
+        "plan":         { "model": "kimi-for-coding/k3" },
+        "architect":    { "model": "kimi-for-coding/k3" },
+        "investigator": { "model": "kimi-for-coding/k3" },
+        "debugger":     { "model": "kimi-for-coding/k3" },
+        "reviewer":     { "model": "kimi-for-coding/k3" }
+      }
+    }
+
+  },
+
+  "_exemplos_personalizados": {
+
+    "_comentario": "Exemplos de configurações híbridas — copie e adapte conforme necessário.",
+
+    "todos_diferentes": {
+      "_descricao": "Cada agent com um modelo diferente, otimizado para sua tarefa.",
+      "agent": {
+        "build":        { "model": "minimax/MiniMax-M3" },
+        "plan":         { "model": "kimi-for-coding/k3" },
+        "architect":    { "model": "kimi-for-coding/k3" },
+        "investigator": { "model": "minimax/MiniMax-M3" },
+        "debugger":     { "model": "kimi-for-coding/k3" },
+        "reviewer":     { "model": "anthropic/claude-sonnet-4-20250514" }
+      }
+    },
+
+    "_misturando_presets": {
+      "_descricao": "Comece com o preset 'balanceado' e sobrescreva apenas os agents que você quer customizar.",
+      "agent": {
+        "build":        { "model": "minimax/MiniMax-M3" },
+        "plan":         { "model": "kimi-for-coding/k3" },
+        "architect":    { "model": "kimi-for-coding/k3" },
+        "investigator": { "model": "minimax/MiniMax-M3" },
+        "debugger":     { "model": "kimi-for-coding/k3" },
+        "reviewer":     { "model": "openai/gpt-5-codex" }
+      }
+    }
+
+  },
+
+  "_como_usar": [
+    "1. Escolha um preset acima (rápido, balanceado ou profundo).",
+    "2. Copie o bloco 'agent' correspondente (sem os campos '_descricao' e '_tradeoff').",
+    "3. Abra ~/.config/opencode/opencode.jsonc no seu editor.",
+    "4. Cole o bloco dentro do JSON existente, mesclando com 'agent' que já estiver lá.",
+    "5. Salve. O OpenCode vai recarregar as configs.",
+    "6. Use 'opencode models' para confirmar os modelos disponíveis.",
+    "7. Para verificar qual modelo está ativo em um agent, basta abrir uma sessão e usar o agent — o log mostra."
+  ],
+
+  "_atalho_rapido": {
+    "_comando": "./update.sh --show-snippet balanceado",
+    "_descricao": "Imprime apenas o preset 'balanceado' direto no terminal, pronto para copiar."
+  }
+}
