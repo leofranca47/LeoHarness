@@ -798,4 +798,4 @@ Sim — comandos e agents funcionam em todas as interfaces que rodam sobre OpenC
 
 ---
 
-**Mantido por:** Léo · OpenCode ≥ 1.18 · MIT-style (use à vontade)
+**Mantido por:** Leo França · OpenCode ≥ 1.18 · MIT-style (use à vontade)
