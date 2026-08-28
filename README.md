@@ -1,6 +1,6 @@
-# Global Engineering Harness — OpenCode
+# OpenHarness — Global Engineering Harness for OpenCode
 
-> Sistema pessoal de engenharia assistida por IA para o OpenCode.
+> Sistema comunitário de engenharia assistida por IA para o OpenCode.
 
 Um conjunto de **comandos** (`/init-project`, `/refine`, `/spec`, `/feature`, `/bug`, `/debug`, `/refactor`, `/review`), **agentes especializados** (`@architect`, `@investigator`, `@debugger`, `@reviewer`) e **módulos de conhecimento** (princípios, workflows, gates, profiles, TDD) que deixam o OpenCode mais previsível, metódico e respeitoso às convenções dos seus projetos.
 
@@ -28,7 +28,7 @@ Funciona em **qualquer stack**: PHP/Laravel, Node, Python, Go, Rust… e é espe
 
 ## 1. O que é
 
-Um **harness pessoal** que adiciona ao OpenCode:
+Um **harness comunitário** que adiciona ao OpenCode:
 
 - **7 comandos** (`/`) que executam workflows estruturados (feature, bug, debug, refactor, review, init-project, refresh-context).
 - **4 agentes** (`@`) especializados para tarefas específicas (architect, investigator, debugger, reviewer).
@@ -94,7 +94,7 @@ A ideia central: **o OpenCode continua sendo o OpenCode**, mas agora você tem u
 
 ```bash
 # 1. Clone ou baixe este repositório para algum lugar do seu $HOME
-cd ~/leoHarness
+cd ~/OpenHarness
 
 # 2. Rode o instalador
 ./install.sh
@@ -141,7 +141,7 @@ Todos devem existir e estar preenchidos.
 
 ## 5. Atualização
 
-Quando você modificar arquivos no source (`~/leoHarness/`) ou puxar uma nova versão do GitHub:
+Quando você modificar arquivos no source (`~/OpenHarness/`) ou puxar uma nova versão do GitHub:
 
 ```bash
 ./update.sh                  # Aplica as mudanças (com diff antes)
@@ -513,7 +513,7 @@ O comando `/init-project` **respeita** qualquer `AGENTS.md` existente e apenas c
 ## 10. Estrutura de arquivos
 
 ```text
-~/leoHarness/                              ← source-of-truth (este repo)
+~/OpenHarness/                              ← source-of-truth (este repo)
 ├── install.sh                             # instala no OpenCode
 ├── update.sh                              # atualiza
 ├── README.md                              # este arquivo
@@ -563,10 +563,10 @@ O comando `/init-project` **respeita** qualquer `AGENTS.md` existente e apenas c
     └── presets.jsonc                      # 3 presets de modelos
 
 ~/.config/opencode/                        ← destino (gerenciado por install/update)
-├── AGENTS.md                              # = ~/leoHarness/AGENTS.md
-├── commands/                              # = ~/leoHarness/commands/
-├── agents/                                # = ~/leoHarness/agents/
-├── harness/                               # = ~/leoHarness/harness/
+├── AGENTS.md                              # = ~/OpenHarness/AGENTS.md
+├── commands/                              # = ~/OpenHarness/commands/
+├── agents/                                # = ~/OpenHarness/agents/
+├── harness/                               # = ~/OpenHarness/harness/
 ├── .harness-backups/                      # backups timestamped (criado por install/update)
 └── opencode.jsonc                         # ← seu, NÃO TOCADO pelo harness
 
@@ -586,7 +586,7 @@ O comando `/init-project` **respeita** qualquer `AGENTS.md` existente e apenas c
 
 ```bash
 # 1. Instalar o harness
-cd ~/leoHarness && ./install.sh
+cd ~/OpenHarness && ./install.sh
 
 # 2. Abrir um projeto no OpenCode
 cd ~/meu-projeto && opencode
@@ -615,7 +615,7 @@ Esses comandos funcionam mesmo sem `.opencode/context/` (eles usamão apenas os 
 ### Cenário 3: atualizar o harness
 
 ```bash
-# 1. Você editou ~/leoHarness/commands/feature.md
+# 1. Você editou ~/OpenHarness/commands/feature.md
 # 2. Ver o que vai mudar:
 ./update.sh --diff-only
 # 3. Aplicar:
@@ -769,17 +769,17 @@ rm -rf ~/.config/opencode/harness
 
 ### Como adiciono um novo comando/agent próprio?
 
-Crie um arquivo `.md` (com frontmatter) em `~/leoHarness/commands/` ou `~/leoHarness/agents/`:
+Crie um arquivo `.md` (com frontmatter) em `~/OpenHarness/commands/` ou `~/OpenHarness/agents/`:
 
 ```bash
-nano ~/leoHarness/commands/meu-comando.md
+nano ~/OpenHarness/commands/meu-comando.md
 ./update.sh    # implanta no OpenCode
 ```
 
 ### Como adiciono um profile de tecnologia novo?
 
 ```bash
-nano ~/leoHarness/harness/profiles/python.md
+nano ~/OpenHarness/harness/profiles/python.md
 ./update.sh
 ```
 
@@ -795,9 +795,9 @@ Use `opencode models` para listar providers/modelos. Ao iniciar uma sessão, o l
 
 ### Como contribuir com melhorias?
 
-Este é um projeto pessoal, mas a estrutura é versionável. Sugestões:
+Este é um projeto comunitário, mas a estrutura é versionável. Sugestões:
 
-1. Edite o arquivo em `~/leoHarness/`.
+1. Edite o arquivo em `~/OpenHarness/`.
 2. Rode `./update.sh --diff-only` para revisar.
 3. Se gostar, faça commit e push para seu fork.
 

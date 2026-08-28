@@ -1,6 +1,6 @@
-# Global Engineering Harness — OpenCode
+# OpenHarness — Global Engineering Harness for OpenCode
 
-> Sistema pessoal de engenharia assistida por IA para OpenCode.
+> Sistema comunitário de engenharia assistida por IA para OpenCode.
 
 ## Quem você é (sempre)
 
