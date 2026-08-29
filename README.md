@@ -738,7 +738,135 @@ O harness adiciona **TDD-first quando prático** como o 6º princípio inegociá
 
 ---
 
-## 13. FAQ
+## 13. Estratégia de Reasoning por Etapa
+
+O OpenHarness permite que **cada etapa do Harness tenha um nível de reasoning recomendado** (`low`, `normal`, `high`), sem obrigar o Harness a escolher um modelo.
+
+**Princípios:**
+
+- O Harness **não escolhe modelo** — respeita o modelo atualmente selecionado no OpenCode quando o usuário não informa um.
+- Quando o usuário informa um modelo explicitamente (ex: `--model google/gemini-3.7-flash`), esse modelo é preservado.
+- Cada etapa possui um **nível de reasoning abstrato** declarado em `harness/config/model-strategy.jsonc`.
+- O nível de reasoning é **adaptado à configuração real do modelo** via `adapt_reasoning` no módulo de estratégia.
+- **MiniMax M3** tem adapter dedicado: M3 só expõe 2 capabilities (`none`/`thinking`), então o adapter mapeia `low`→`none` (thinking off) e `normal`/`high`→`thinking` (thinking on).
+- **Outros modelos** usam o adapter genérico, que consulta `opencode models --verbose` para descobrir variants reais.
+- Se a variant preferida não existir para o modelo (no adapter genérico), o Harness **lista as variants realmente disponíveis** e pergunta ao usuário qual usar — **sem trocar de modelo** e **sem degradar silenciosamente**.
+- O Harness **nunca troca de modelo automaticamente** e nunca falha a execução por variant ausente.
+
+### Tabela padrão de reasoning
+
+| Etapa | Reasoning |
+|---|---|
+| refine | low |
+| spec | high |
+| tdd/red | high |
+| implement | normal |
+| debug | high |
+| refactor | low |
+| review | high |
+
+O arquivo vive em `harness/config/model-strategy.jsonc` (instalado em `~/.config/opencode/harness/config/`). Para customizar, basta editar esse arquivo — mudanças têm efeito imediato.
+
+### Exemplos práticos
+
+**Exemplo 1 — MiniMax M3 + `/spec`:**
+
+```text
+Usuário ativo no OpenCode com: minimax/MiniMax-M3
+Executa: /spec criar sistema de cupons
+
+Harness resolve:
+  - reasoning preferido da etapa spec: high
+  - adapter MiniMax-M3: high → thinking
+  - variant real existe? sim (thinking)
+
+Harness aplica: minimax/MiniMax-M3#thinking
+```
+
+**Exemplo 2 — Gemini 3.7 Flash + `/spec`:**
+
+```text
+Usuário ativo no OpenCode com: google/gemini-3.7-flash
+Executa: /spec criar sistema de cupons
+
+Harness resolve:
+  - reasoning preferido da etapa spec: high
+  - adapter genérico: high → "high"
+  - variant real existe? sim (Gemini 3.7 Flash tem low/medium/high)
+
+Harness aplica: google/gemini-3.7-flash#high
+```
+
+**Exemplo 3 — modelo sem variant compatível (fallback):**
+
+```text
+Usuário ativo no OpenCode com: <modelo-x>
+Executa: /spec ...
+
+Harness resolve:
+  - reasoning preferido: high
+  - adapter genérico: high → "high"
+  - variant "high" NÃO existe na lista de variants do modelo
+
+Harness emite mensagem de fallback:
+  "O modelo <modelo-x> não possui a configuração de reasoning 'high'
+   para esta etapa.
+   Variants disponíveis:
+     1. low
+     2. medium"
+
+Usuário escolhe: 2 (medium)
+Harness aplica: <modelo-x>#medium
+Execução continua.
+```
+
+**Exemplo 4 — Ausência de modelo selecionado:**
+
+```text
+Usuário não tem modelo fixado no opencode.jsonc.
+Executa: /refine quero melhorar o cadastro
+
+Harness usa o modelo atualmente selecionado no OpenCode (resolvido pelo runtime).
+Harness aplica reasoning "low" da etapa refine (adaptado ao modelo).
+```
+
+### Variants resultantes por stage (fim-a-fim)
+
+A tabela "padrão de reasoning" acima mostra `stage → reasoning abstrato`. Esta tabela mostra o resultado **fim-a-fim** após o adapter — o que o usuário realmente recebe:
+
+**Para MiniMax-M3** (adapter dedicado, 7 stages colapsam em 2 variants):
+
+| Stage | Reasoning | Variant final | Thinking |
+|---|---|---|---|
+| `refine` | low | `#none` | off |
+| `refactor` | low | `#none` | off |
+| `implement` | normal | `#thinking` | on |
+| `spec` | high | `#thinking` | on |
+| `tdd_red` | high | `#thinking` | on |
+| `debug` | high | `#thinking` | on |
+| `review` | high | `#thinking` | on |
+
+> No M3, **stages que compartilham reasoning são indistinguíveis em variant final**. Editar `model-strategy.jsonc` para separar `debug` de `review` não muda a variant no M3; só muda em modelos com variants granulares.
+
+**Para modelos com adapter genérico** (ex: `google/gemini-3.7-flash` com `low`/`medium`/`high`): a mesma config pode produzir até 3 variants distintas (`#low`, `#medium`, `#high`). Veja `harness/core/model-strategy.md` para o algoritmo.
+
+### Como verificar se a variant está realmente aplicada
+
+O harness **não tem log de runtime** que confirme qual variant foi aplicada na chamada HTTP ao provedor. A única garantia observável é visual:
+
+1. **Bloco `<think>` na resposta** (mais forte): com `#thinking`, o modelo emite um bloco de raciocínio antes da resposta visível. Com `#none`, esse bloco não existe. Você literalmente **vê** a diferença no chat.
+2. **Teste A/B**: rodar o mesmo pedido curto em `/refine` (resolve para `#none` no M3) e em `/spec` (resolve para `#thinking` no M3). Se `/spec` mostrar bloco `<think>` e `/refine` não, o mecanismo está funcionando end-to-end.
+3. **Proxy de latência** (fraco): `#thinking` gera tokens de raciocínio antes da resposta visível, então stages com `#thinking` consistentemente levam mais tempo que stages com `#none` para o mesmo input.
+
+### Backward compatibility
+
+Se `harness/config/model-strategy.jsonc` for removido, o Harness usa o comportamento legacy (sem reasoning aplicado). A feature é estritamente aditiva.
+
+Para detalhes do algoritmo de resolução e adapters, veja `harness/core/model-strategy.md` (carregado sob demanda via `@harness/core/model-strategy.md`).
+
+---
+
+## 14. FAQ
 
 ### O harness funciona com qualquer stack?
 
