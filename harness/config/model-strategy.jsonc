@@ -1,0 +1,30 @@
+{
+  "_comment": "Estratégia de reasoning por etapa do OpenHarness. Editável pelo usuário. Sem este arquivo, o Harness usa o comportamento legacy (sem reasoning aplicado).",
+  "_schema": {
+    "stages": {
+      "<stage_name>": {
+        "model":     "string | null — null significa 'usar modelo atualmente selecionado no OpenCode'",
+        "reasoning": "string | null — null significa 'não aplicar reasoning'. Valores válidos: low, normal, high"
+      }
+    }
+  },
+  "_stage_naming": "Estágios com '/' no nome (ex: tdd/red) usam '_' como chave no JSON (ex: tdd_red). A forma com '/' é usada apenas na documentação.",
+  "_reasoning_levels": {
+    "low":    "raciocínio mínimo — para tarefas rotineiras (refine, refactor)",
+    "normal": "raciocínio padrão — para implementação que exige cuidado moderado",
+    "high":   "raciocínio profundo — para análise, design, debug, review, planejamento"
+  },
+  "_model_adaptation": "O nível de reasoning é uma INTENÇÃO ABSTRATA. A configuração real (variant, thinking on/off, etc.) é resolvida por adapt_reasoning() no módulo harness/core/model-strategy.md, com adapter específico para MiniMax-M3 (none/thinking) e adapter genérico via opencode models --verbose.",
+  "_regra_uso": "Mudanças têm efeito imediato na próxima execução. Veja harness/core/model-strategy.md para o algoritmo de resolução.",
+  "_backward_compatible": "true — remover este arquivo = comportamento legacy (idêntico ao OpenHarness pré-feature).",
+
+  "stages": {
+    "refine":    { "model": null, "reasoning": "low"    },
+    "spec":      { "model": null, "reasoning": "high"   },
+    "tdd_red":   { "model": null, "reasoning": "high"   },
+    "implement": { "model": null, "reasoning": "normal" },
+    "debug":     { "model": null, "reasoning": "high"   },
+    "refactor":  { "model": null, "reasoning": "low"    },
+    "review":    { "model": null, "reasoning": "high"   }
+  }
+}

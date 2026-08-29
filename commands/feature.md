@@ -21,6 +21,7 @@ $ARGUMENTS
 - `@harness/profiles/generic.md` — sempre
 - `@harness/profiles/php.md` ou `@harness/profiles/laravel.md` se a stack exigir
 - `@harness/core/context-strategy.md` — para saber o que carregar e quando
+- `@harness/core/model-strategy.md` — **aplicar reasoning preferido da etapa; carregar também nas sub-fases `tdd_red` e `implement`**
 
 ## Regras gerais
 

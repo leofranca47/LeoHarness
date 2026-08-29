@@ -19,6 +19,7 @@ Se o pedido chegou sem nenhuma evidência (sem logs, sem erro, sem sintoma claro
 
 - `@harness/workflows/debug.md` — workflow detalhado de debug
 - `@harness/core/principles.md` — sempre
+- `@harness/core/model-strategy.md` — **aplicar reasoning preferido da etapa (low/normal/high)**
 
 ## Regra crítica
 

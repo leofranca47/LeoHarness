@@ -171,7 +171,8 @@ confirm() {
 title "Criando estrutura de diretórios"
 
 for sub in "commands" "agents" "harness/core" "harness/workflows" \
-           "harness/gates" "harness/profiles" "harness/templates"; do
+           "harness/gates" "harness/profiles" "harness/templates" \
+           "harness/config"; do
   target="$OPENCODE_HOME/$sub"
   if [[ -d "$target" ]]; then
     info "Já existe: $sub/"

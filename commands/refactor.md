@@ -21,6 +21,7 @@ Se o pedido chegou vago ("esse código está ruim", "melhorar isso aqui"), sugir
 - `@harness/workflows/tdd.md` — para characterization tests em código legado + TDD quando adicionar testes
 - `@harness/gates/completion.md` — checklist
 - `@harness/core/principles.md`
+- `@harness/core/model-strategy.md` — **aplicar reasoning preferido da etapa (low/normal/high)**
 
 ## Regra crítica
 

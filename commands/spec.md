@@ -49,6 +49,7 @@ INPUT (direto ou já refinado)
 - `@harness/core/task-classification.md` — classificação
 - `@harness/core/context-strategy.md` — estratégia de contexto
 - `@harness/core/principles.md` — regras globais
+- `@harness/core/model-strategy.md` — **aplicar reasoning preferido da etapa (low/normal/high)**
 - `@harness/profiles/generic.md` — sempre
 - `@harness/profiles/php.md` ou `@harness/profiles/laravel.md` se aplicável
 - `@harness/gates/discovery.md` — checklist do que mapear

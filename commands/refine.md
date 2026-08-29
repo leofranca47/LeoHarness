@@ -41,6 +41,7 @@ VAGUE REQUEST
 - `@harness/core/task-classification.md` — para classificar (estende com confiança + OTHER)
 - `@harness/core/context-strategy.md` — estratégia para carregar contexto do projeto
 - `@harness/core/principles.md` — regras globais (evidência > suposição)
+- `@harness/core/model-strategy.md` — **aplicar reasoning preferido da etapa (low/normal/high)**
 - `@harness/profiles/generic.md` — sempre
 - `@harness/profiles/php.md` ou `@harness/profiles/laravel.md` se a stack exigir
 

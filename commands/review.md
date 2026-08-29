@@ -14,6 +14,7 @@ $ARGUMENTS
 ## Módulos de apoio
 
 - `@harness/workflows/review.md` — workflow detalhado
+- `@harness/core/model-strategy.md` — **aplicar reasoning preferido da etapa (low/normal/high)**
 - `@harness/profiles/generic.md` — sempre
 - `@harness/profiles/php.md` ou `@harness/profiles/laravel.md` se aplicável
 

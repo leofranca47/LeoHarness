@@ -22,6 +22,7 @@ Se o pedido de bug chegou vago (sem erro claro, sem passos de reprodução, sem 
 - `@harness/gates/completion.md` — checklist de validação
 - `@harness/core/principles.md` — sempre
 - `@harness/profiles/generic.md` — sempre
+- `@harness/core/model-strategy.md` — **aplicar reasoning preferido da etapa; carregar também nas sub-fases `tdd_red` e `implement`**
 
 ## Regra crítica
 
