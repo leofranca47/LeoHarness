@@ -1,0 +1,70 @@
+---
+import DefaultHeader from '@astrojs/starlight/components/Header.astro';
+
+const { locale, locales, t } = Astro.props;
+
+// Constrói lista de locales com URLs
+const entries = locales
+  ? Object.entries(locales).map(([code, l]) => ({ code, ...l }))
+  : [];
+
+// Helper simples: pega o path atual e troca o prefixo de locale
+const currentPath = Astro.url.pathname;
+function localizedHref(targetLocale) {
+  if (currentPath === '/' || currentPath === '') return `/${targetLocale}/`;
+  // Strip leading /xx/ or /xx-BR/
+  const stripped = currentPath.replace(/^\/[a-zA-Z-]+\//, '/');
+  return `/${targetLocale}${stripped}`;
+}
+---
+
+<DefaultHeader {...Astro.props} />
+
+<div class="lang-toggle" data-astro-prefetch>
+  {entries.map((entry) => (
+    <a
+      href={localizedHref(entry.code)}
+      aria-current={entry.code === locale ? 'true' : undefined}
+      class:list={['lang-link', { active: entry.code === locale }]}
+      data-lang={entry.code}
+    >
+      {entry.code.split('-')[0].toUpperCase()}
+    </a>
+  ))}
+</div>
+
+<style>
+  .lang-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2xs);
+    padding: var(--space-2xs);
+    border: 1px solid var(--color-border-subtle);
+    border-radius: var(--radius-default);
+    background: var(--color-surface-substrate);
+  }
+
+  .lang-link {
+    font-family: var(--font-mono);
+    font-size: var(--fs-label-caps);
+    font-weight: var(--fw-semibold);
+    letter-spacing: var(--ls-label-caps);
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--color-text-muted);
+    padding: var(--space-2xs) var(--space-xs);
+    border-radius: var(--radius-sm);
+    transition: all 120ms ease;
+  }
+
+  .lang-link:hover {
+    color: var(--color-text-primary);
+    background: var(--color-surface-elevated);
+  }
+
+  .lang-link.active {
+    color: var(--color-primary);
+    background: rgba(255, 224, 67, 0.08);
+    border: 1px solid var(--color-border-accent-soft);
+  }
+</style>

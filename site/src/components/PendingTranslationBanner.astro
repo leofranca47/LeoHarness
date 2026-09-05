@@ -1,0 +1,51 @@
+---
+const { entry } = Astro.props;
+const fm = entry?.data;
+const pending = fm?.['translation-status'] === 'pending';
+const sourceLang = fm?.['translation-source'] || 'pt-BR';
+---
+
+{pending && (
+  <div class="pending-translation-banner" role="status" aria-live="polite">
+    <span class="banner-pill">PENDING TRANSLATION</span>
+    <span class="banner-msg">
+      Conteúdo refletido de <strong>{sourceLang}</strong> — tradução nativa ainda não disponível.
+    </span>
+  </div>
+)}
+
+<style>
+  .pending-translation-banner {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-sm) var(--space-md);
+    margin-block-end: var(--space-lg);
+    background: var(--color-pending-translation-bg);
+    border: 1px solid var(--color-pending-translation-border);
+    border-radius: var(--radius-default);
+    font-size: var(--fs-body-sm);
+  }
+
+  .banner-pill {
+    display: inline-block;
+    padding: 2px var(--space-xs);
+    background: rgba(255, 224, 67, 0.15);
+    border: 1px solid var(--color-border-accent-soft);
+    border-radius: var(--radius-full);
+    font-family: var(--font-mono);
+    font-size: var(--fs-label-caps);
+    font-weight: var(--fw-semibold);
+    letter-spacing: var(--ls-label-caps);
+    color: var(--color-primary);
+  }
+
+  .banner-msg {
+    color: var(--color-text-muted);
+  }
+
+  .banner-msg strong {
+    color: var(--color-text-primary);
+    font-weight: var(--fw-medium);
+  }
+</style>

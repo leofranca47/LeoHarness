@@ -1,0 +1,96 @@
+---
+const { lang = 'pt' } = Astro.props;
+
+const i18n = {
+  pt: {
+    badge: 'DOCS v0.1.0',
+    tagline: 'Sistema comunitário de engenharia assistida por IA para OpenCode.',
+    sub: 'Comandos (',
+    sub2: ', ',
+    sub3: '), agentes (',
+    sub4: ', ...) e módulos de conhecimento que deixam o OpenCode previsível, metódico e respeitoso às convenções do seu projeto.',
+  },
+  en: {
+    badge: 'DOCS v0.1.0',
+    tagline: 'Community-driven engineering harness for OpenCode.',
+    sub: 'Slash commands (',
+    sub2: ', ',
+    sub3: '), named agents (',
+    sub4: ', ...) and knowledge modules that make OpenCode predictable, methodical and respectful of your project conventions.',
+  },
+};
+const t = i18n[lang] || i18n.pt;
+---
+
+<section class="hero">
+  <span class="hero-pill">{t.badge}</span>
+  <h1 class="hero-title">OpenHarness</h1>
+  <p class="hero-tagline">{t.tagline}</p>
+  <p class="hero-sub">
+    {t.sub}<code>/feature</code>{t.sub2}<code>/bug</code>{t.sub3}<code>@architect</code>{t.sub4}{t.sub5 ?? t.sub4}
+  </p>
+</section>
+
+<style>
+  .hero {
+    text-align: left;
+    padding: var(--space-2xl) 0;
+    border-bottom: 1px solid var(--color-border-subtle);
+    margin-block-end: var(--space-2xl);
+  }
+
+  .hero-pill {
+    display: inline-block;
+    padding: var(--space-2xs) var(--space-sm);
+    background: rgba(255, 224, 67, 0.08);
+    border: 1px solid var(--color-border-accent-soft);
+    border-radius: var(--radius-full);
+    font-family: var(--font-mono);
+    font-size: var(--fs-label-caps);
+    font-weight: var(--fw-semibold);
+    letter-spacing: var(--ls-label-caps);
+    color: var(--color-primary);
+    margin-block-end: var(--space-md);
+  }
+
+  .hero-title {
+    font-size: var(--fs-display);
+    line-height: var(--lh-display);
+    letter-spacing: var(--ls-display);
+    font-weight: var(--fw-bold);
+    margin-block: 0 var(--space-md);
+    background: linear-gradient(135deg, var(--color-text-primary) 0%, var(--color-primary) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-tagline {
+    font-size: var(--fs-headline-lg-mobile);
+    font-weight: var(--fw-medium);
+    color: var(--color-text-primary);
+    margin-block: 0 var(--space-md);
+  }
+
+  .hero-sub {
+    font-size: var(--fs-body-lg);
+    color: var(--color-text-muted);
+    line-height: var(--lh-body-lg);
+    max-width: var(--width-reading-corridor);
+    margin: 0;
+  }
+
+  .hero-sub code {
+    font-family: var(--font-mono);
+    font-size: var(--fs-code-inline);
+    background: var(--color-surface-container);
+    border: 1px solid var(--color-border-subtle);
+    border-radius: var(--radius-default);
+    padding: 0 0.25rem;
+  }
+
+  @media (min-width: 768px) {
+    .hero-title { font-size: 4rem; }
+    .hero-tagline { font-size: var(--fs-headline-lg); }
+  }
+</style>
