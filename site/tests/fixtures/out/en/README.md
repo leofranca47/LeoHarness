@@ -1,8 +1,6 @@
 ---
 title: OpenHarness (fixture)
 ---
-# OpenHarness (fixture)
-
 > Harness comunitário para OpenCode (fixture).
 
 ## Comandos disponíveis

@@ -2,9 +2,9 @@
 title: "Workflow: BUGFIX"
 translation-status: pending
 translation-source: pt-BR
+banner:
+  content: Conteúdo refletido de **pt-BR** — tradução nativa ainda não disponível.
 ---
-# Workflow: BUGFIX
-
 Correção de bug reproduzível após identificação da causa raiz.
 
 ```

@@ -2,9 +2,9 @@
 title: OpenHarness — Global Engineering Harness for OpenCode
 translation-status: pending
 translation-source: pt-BR
+banner:
+  content: Conteúdo refletido de **pt-BR** — tradução nativa ainda não disponível.
 ---
-# OpenHarness — Global Engineering Harness for OpenCode
-
 > Sistema comunitário de engenharia assistida por IA para OpenCode.
 
 ## Quem você é (sempre)

@@ -4,6 +4,8 @@ agent: plan
 title: Transforma pedido vago em pedido refinado antes de implementar
 translation-status: pending
 translation-source: pt-BR
+banner:
+  content: Conteúdo refletido de **pt-BR** — tradução nativa ainda não disponível.
 ---
 
 Você está executando `/refine`. Transforme um pedido vago em um **Refined Request** estruturado.

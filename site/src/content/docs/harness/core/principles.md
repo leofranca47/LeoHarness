@@ -1,8 +1,6 @@
 ---
 title: Princípios Globais de Engenharia
 ---
-# Princípios Globais de Engenharia
-
 Os 4 princípios que guiam toda decisão neste harness. São inegociáveis.
 
 ## 1. Entender antes de modificar

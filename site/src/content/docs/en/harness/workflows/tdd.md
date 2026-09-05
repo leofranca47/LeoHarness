@@ -2,9 +2,9 @@
 title: "Workflow: TDD (Test-Driven Development)"
 translation-status: pending
 translation-source: pt-BR
+banner:
+  content: Conteúdo refletido de **pt-BR** — tradução nativa ainda não disponível.
 ---
-# Workflow: TDD (Test-Driven Development)
-
 Módulo reutilizável de TDD. Carregado via `@harness/workflows/tdd.md` por:
 
 - `/feature` (durante IMPLEMENT)

@@ -1,8 +1,6 @@
 ---
 title: "Profile: PHP"
 ---
-# Profile: PHP
-
 Adiciona guidance específico de PHP ao profile genérico. **Carregue junto com `@harness/profiles/generic.md`.**
 
 ## Quando carregar este profile

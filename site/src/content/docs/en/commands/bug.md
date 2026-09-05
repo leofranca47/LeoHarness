@@ -4,6 +4,8 @@ agent: build
 title: Corrige um bug reproduzível após identificar a causa raiz
 translation-status: pending
 translation-source: pt-BR
+banner:
+  content: Conteúdo refletido de **pt-BR** — tradução nativa ainda não disponível.
 ---
 
 Você está executando `/bug`. Corrija um bug reproduzível.

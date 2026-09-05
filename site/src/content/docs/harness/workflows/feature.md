@@ -1,8 +1,6 @@
 ---
 title: "Workflow: FEATURE"
 ---
-# Workflow: FEATURE
-
 Implementação de nova funcionalidade seguindo o pipeline estruturado.
 
 ```

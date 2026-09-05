@@ -1,8 +1,6 @@
 ---
 title: "Workflow: TDD (Test-Driven Development)"
 ---
-# Workflow: TDD (Test-Driven Development)
-
 Módulo reutilizável de TDD. Carregado via `@harness/workflows/tdd.md` por:
 
 - `/feature` (durante IMPLEMENT)

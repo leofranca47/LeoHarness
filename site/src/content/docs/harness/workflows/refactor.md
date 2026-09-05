@@ -1,8 +1,6 @@
 ---
 title: "Workflow: REFACTOR"
 ---
-# Workflow: REFACTOR
-
 Melhoria de estrutura interna **sem alterar comportamento observável**.
 
 ```

@@ -1,8 +1,6 @@
 ---
 title: "Workflow: DEBUG"
 ---
-# Workflow: DEBUG
-
 Investigação sistemática de sintoma vago ou causa desconhecida.
 
 ```

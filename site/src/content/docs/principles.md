@@ -1,8 +1,6 @@
 ---
 title: OpenHarness — Global Engineering Harness for OpenCode
 ---
-# OpenHarness — Global Engineering Harness for OpenCode
-
 > Sistema comunitário de engenharia assistida por IA para OpenCode.
 
 ## Quem você é (sempre)

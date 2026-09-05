@@ -4,6 +4,8 @@ agent: build
 title: Inicializa contexto pessoal do projeto em .opencode/context/
 translation-status: pending
 translation-source: pt-BR
+banner:
+  content: Conteúdo refletido de **pt-BR** — tradução nativa ainda não disponível.
 ---
 
 Você está executando `/init-project`. Esta é uma tarefa de **inicialização pessoal** — nada aqui deve tocar em arquivos versionados do time.

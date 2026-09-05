@@ -1,8 +1,6 @@
 ---
 title: "Gate: PLANNING"
 ---
-# Gate: PLANNING
-
 Estrutura esperada do plano antes de implementar mudanças não-triviais.
 
 ## Quando apresentar plano formal

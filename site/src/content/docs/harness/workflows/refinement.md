@@ -1,8 +1,6 @@
 ---
 title: "Workflow: REFINEMENT"
 ---
-# Workflow: REFINEMENT
-
 Transformar um pedido vago em um **Refined Request** estruturado, pronto para ser usado por `/spec`, `/feature`, `/bug`, `/debug` ou `/refactor`.
 
 ```

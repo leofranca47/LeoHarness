@@ -1,8 +1,6 @@
 ---
 title: "Gate: DISCOVERY"
 ---
-# Gate: DISCOVERY
-
 Checklist da fase de descoberta, antes de planejar uma mudança significativa.
 
 ## Antes de começar a implementação

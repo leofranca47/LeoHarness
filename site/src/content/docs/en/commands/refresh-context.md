@@ -4,6 +4,8 @@ agent: build
 title: Atualiza contexto pessoal do projeto sem reescrever tudo
 translation-status: pending
 translation-source: pt-BR
+banner:
+  content: Conteúdo refletido de **pt-BR** — tradução nativa ainda não disponível.
 ---
 
 Você está executando `/refresh-context`. Objetivo: **atualizar minimamente** o contexto pessoal em `.opencode/context/`.

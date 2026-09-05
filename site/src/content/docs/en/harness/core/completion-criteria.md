@@ -2,9 +2,9 @@
 title: Critérios de Conclusão
 translation-status: pending
 translation-source: pt-BR
+banner:
+  content: Conteúdo refletido de **pt-BR** — tradução nativa ainda não disponível.
 ---
-# Critérios de Conclusão
-
 **Tarefa não está pronta quando o código foi escrito.** Está pronta quando foi **validada e revisada**.
 
 ## O que constitui "pronto"

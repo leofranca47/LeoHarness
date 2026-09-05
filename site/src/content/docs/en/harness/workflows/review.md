@@ -2,9 +2,9 @@
 title: "Workflow: REVIEW"
 translation-status: pending
 translation-source: pt-BR
+banner:
+  content: Conteúdo refletido de **pt-BR** — tradução nativa ainda não disponível.
 ---
-# Workflow: REVIEW
-
 Análise crítica de código/diff sem modificá-lo.
 
 ```

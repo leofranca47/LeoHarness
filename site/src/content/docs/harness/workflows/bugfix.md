@@ -1,8 +1,6 @@
 ---
 title: "Workflow: BUGFIX"
 ---
-# Workflow: BUGFIX
-
 Correção de bug reproduzível após identificação da causa raiz.
 
 ```

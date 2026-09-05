@@ -1,8 +1,6 @@
 ---
 title: "Workflow: SPECIFICATION"
 ---
-# Workflow: SPECIFICATION
-
 Gerar uma **Specification** estruturada a partir de um pedido refinado ou direto.
 
 ```

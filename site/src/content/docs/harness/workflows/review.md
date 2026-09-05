@@ -1,8 +1,6 @@
 ---
 title: "Workflow: REVIEW"
 ---
-# Workflow: REVIEW
-
 Análise crítica de código/diff sem modificá-lo.
 
 ```

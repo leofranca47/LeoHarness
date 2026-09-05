@@ -1,8 +1,6 @@
 ---
 title: "Profile: Generic (Tecnologia-agnóstico)"
 ---
-# Profile: Generic (Tecnologia-agnóstico)
-
 Este é o profile base. Carregue-o sempre. Profiles específicos (PHP, Laravel) carregam em cima deste.
 
 ## Filosofia

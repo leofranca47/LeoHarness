@@ -2,9 +2,9 @@
 title: "Workflow: INVESTIGATION"
 translation-status: pending
 translation-source: pt-BR
+banner:
+  content: Conteúdo refletido de **pt-BR** — tradução nativa ainda não disponível.
 ---
-# Workflow: INVESTIGATION
-
 Exploração de código desconhecido para responder perguntas ou mapear terreno.
 
 ```

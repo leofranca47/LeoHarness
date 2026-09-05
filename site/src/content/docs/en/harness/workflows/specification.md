@@ -2,9 +2,9 @@
 title: "Workflow: SPECIFICATION"
 translation-status: pending
 translation-source: pt-BR
+banner:
+  content: Conteúdo refletido de **pt-BR** — tradução nativa ainda não disponível.
 ---
-# Workflow: SPECIFICATION
-
 Gerar uma **Specification** estruturada a partir de um pedido refinado ou direto.
 
 ```

@@ -1,8 +1,6 @@
 ---
 title: "Gate: COMPLETION"
 ---
-# Gate: COMPLETION
-
 Checklist obrigatório antes de declarar uma tarefa como pronta.
 
 ## Filosofia

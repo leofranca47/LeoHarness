@@ -2,9 +2,9 @@
 title: "Workflow: DEBUG"
 translation-status: pending
 translation-source: pt-BR
+banner:
+  content: Conteúdo refletido de **pt-BR** — tradução nativa ainda não disponível.
 ---
-# Workflow: DEBUG
-
 Investigação sistemática de sintoma vago ou causa desconhecida.
 
 ```

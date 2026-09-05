@@ -1,8 +1,6 @@
 ---
 title: Estratégia de Carregamento de Contexto
 ---
-# Estratégia de Carregamento de Contexto
-
 **Nada do `harness/` é carregado por padrão.** Carregue sob demanda via `@`.
 
 ## Princípio

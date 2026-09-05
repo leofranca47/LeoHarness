@@ -2,9 +2,9 @@
 title: "Workflow: REFINEMENT"
 translation-status: pending
 translation-source: pt-BR
+banner:
+  content: Conteúdo refletido de **pt-BR** — tradução nativa ainda não disponível.
 ---
-# Workflow: REFINEMENT
-
 Transformar um pedido vago em um **Refined Request** estruturado, pronto para ser usado por `/spec`, `/feature`, `/bug`, `/debug` ou `/refactor`.
 
 ```

@@ -1,8 +1,6 @@
 ---
 title: "Profile: Laravel"
 ---
-# Profile: Laravel
-
 Adiciona guidance específico de Laravel. **Carregue junto com `@harness/profiles/php.md` e `@harness/profiles/generic.md`.**
 
 ## ⚠️ Aviso importante

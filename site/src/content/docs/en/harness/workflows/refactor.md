@@ -2,9 +2,9 @@
 title: "Workflow: REFACTOR"
 translation-status: pending
 translation-source: pt-BR
+banner:
+  content: Conteúdo refletido de **pt-BR** — tradução nativa ainda não disponível.
 ---
-# Workflow: REFACTOR
-
 Melhoria de estrutura interna **sem alterar comportamento observável**.
 
 ```

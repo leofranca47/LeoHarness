@@ -4,9 +4,17 @@
  * sync-content.mjs — Espelha arquivos .md do source-of-truth do OpenHarness
  * para src/content/docs/, gerando as coleções do Starlight.
  *
- * ATENÇÃO: snapshot pre-fix. NÃO strip o H1 do body quando extrai como
- * title (causa H1 duplicado nas páginas doc). Fix aplicado em commit
- * posterior.
+ * Layout de saída:
+ *   - Locale raiz (root, default 'pt-BR'): arquivos em `contentDir/` (sem subpasta)
+ *   - Outros locales (default 'en'): arquivos em `contentDir/{lang}/...`
+ *
+ * Idempotente. Preserva frontmatter. Adiciona title (extraído do H1) e
+ * translation-status (apenas em cópias não-raiz de arquivos PT-only).
+ *
+ * Renomeação: arquivos em RENAME_MAP são renomeados para evitar colisão
+ * de slug (ex: AGENTS.md colide com a pasta agents/ → renomeado para principles.md).
+ *
+ * Não escreve em arquivos do source-of-truth do harness.
  */
 
 import { promises as fs } from 'node:fs';
@@ -40,7 +48,7 @@ async function listMarkdownFiles(dir) {
   const IGNORE_DIRS = new Set([
     'node_modules',
     '.git',
-    'site',
+    'site',         // este site (read-only aqui)
     'dist',
     '.astro',
     '.opencode',
@@ -102,13 +110,22 @@ function parseFrontmatter(content) {
   return { frontmatter: fm, body };
 }
 
-/** Serializa objeto frontmatter de volta. */
+/** Serializa objeto frontmatter de volta. Suporta strings e objetos de 1 nível. */
 function serializeFrontmatter(fm) {
   const lines = ['---'];
   for (const [k, v] of Object.entries(fm)) {
     if (typeof v === 'string') {
       const needsQuotes = /[:#\n]/.test(v);
       lines.push(`${k}: ${needsQuotes ? JSON.stringify(v) : v}`);
+    } else if (v && typeof v === 'object' && !Array.isArray(v)) {
+      // Renderiza objetos como YAML inline-mapping (1 nível)
+      lines.push(`${k}:`);
+      for (const [ik, iv] of Object.entries(v)) {
+        if (typeof iv === 'string') {
+          const needsQuotes = /[:#\n]/.test(iv);
+          lines.push(`  ${ik}: ${needsQuotes ? JSON.stringify(iv) : iv}`);
+        }
+      }
     }
   }
   lines.push('---', '');
@@ -123,7 +140,11 @@ function looksPortuguese(text) {
   );
 }
 
-/** Aplica RENAME_MAP ao nome do arquivo. */
+/**
+ * Aplica RENAME_MAP ao nome do arquivo. Ex: AGENTS.md → principles.md.
+ * @param {string} relativePath
+ * @returns {string}
+ */
 function applyRenames(relativePath) {
   const renamed = RENAME_MAP.get(relativePath);
   return renamed ?? relativePath;
@@ -140,11 +161,20 @@ async function mirrorFile({ sourcePath, relativePath, contentDir, langs, rootLan
   /** @type {Record<string, string>} */
   const baseFm = frontmatter ? { ...frontmatter } : {};
 
-  // Title — adicionar se faltar (snapshop PRE-FIX: NÃO strip H1 do body)
+  // Title — adicionar se faltar
+  let bodyToWrite = body;
   if (!baseFm.title) {
-    if (h1) baseFm.title = h1;
-    else if (baseFm.description) baseFm.title = baseFm.description;
-    else baseFm.title = path.basename(relativePath, '.md').replace(/[-_]/g, ' ');
+    if (h1) {
+      baseFm.title = h1;
+      // Strip o H1 do body para evitar duplicação visual nos templates
+      // Starlight (template doc renderiza title do frontmatter no topo).
+      // Aceita leading whitespace (body pode começar com newline após frontmatter).
+      bodyToWrite = body.replace(/^\s*#\s+.+?\s*\r?\n/, '');
+    } else if (baseFm.description) {
+      baseFm.title = baseFm.description;
+    } else {
+      baseFm.title = path.basename(relativePath, '.md').replace(/[-_]/g, ' ');
+    }
   }
 
   const finalRelative = applyRenames(relativePath);
@@ -158,6 +188,7 @@ async function mirrorFile({ sourcePath, relativePath, contentDir, langs, rootLan
       ? path.join(contentDir, finalRelative)
       : path.join(contentDir, lang, finalRelative);
 
+    // Remove arquivo anterior (caso renomeação mude o nome)
     try { await fs.unlink(outFile); } catch {}
 
     await fs.mkdir(outDir, { recursive: true });
@@ -165,11 +196,14 @@ async function mirrorFile({ sourcePath, relativePath, contentDir, langs, rootLan
     /** @type {Record<string, string>} */
     const fm = { ...baseFm };
 
+    // Marca cópias não-raiz como pending quando PT-only.
+    // Adiciona também o campo Starlight `banner` para exibir o aviso na página.
     if (!isRoot) {
       const isPtOnly = looksPortuguese(baseFm.title || h1 || '');
       if (isPtOnly) {
         fm['translation-status'] = 'pending';
         fm['translation-source'] = rootLang;
+        // Starlight banner — exibido no topo do conteúdo
         fm['banner'] = {
           content: `Conteúdo refletido de **${rootLang}** — tradução nativa ainda não disponível.`,
         };
@@ -177,7 +211,7 @@ async function mirrorFile({ sourcePath, relativePath, contentDir, langs, rootLan
     }
 
     const fmText = Object.keys(fm).length > 0 ? serializeFrontmatter(fm) : '';
-    await fs.writeFile(outFile, fmText + body, 'utf-8');
+    await fs.writeFile(outFile, fmText + bodyToWrite, 'utf-8');
   }
 }
 

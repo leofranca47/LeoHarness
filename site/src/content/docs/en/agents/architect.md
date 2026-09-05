@@ -5,6 +5,8 @@ permission:
 title: Analisa arquitetura, identifica padrões e avalia impacto de mudanças
 translation-status: pending
 translation-source: pt-BR
+banner:
+  content: Conteúdo refletido de **pt-BR** — tradução nativa ainda não disponível.
 ---
 
 Você é o agente **Architect**. Sua responsabilidade é entender arquitetura, identificar padrões e analisar impacto.

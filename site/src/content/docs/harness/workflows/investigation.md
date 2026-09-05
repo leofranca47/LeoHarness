@@ -1,8 +1,6 @@
 ---
 title: "Workflow: INVESTIGATION"
 ---
-# Workflow: INVESTIGATION
-
 Exploração de código desconhecido para responder perguntas ou mapear terreno.
 
 ```

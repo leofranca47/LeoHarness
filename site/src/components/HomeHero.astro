@@ -24,10 +24,9 @@ const t = i18n[lang] || i18n.pt;
 
 <section class="hero">
   <span class="hero-pill">{t.badge}</span>
-  <h1 class="hero-title">OpenHarness</h1>
   <p class="hero-tagline">{t.tagline}</p>
   <p class="hero-sub">
-    {t.sub}<code>/feature</code>{t.sub2}<code>/bug</code>{t.sub3}<code>@architect</code>{t.sub4}{t.sub5 ?? t.sub4}
+    {t.sub}<code>/feature</code>{t.sub2}<code>/bug</code>{t.sub3}<code>@architect</code>{t.sub4}
   </p>
 </section>
 
@@ -54,22 +53,17 @@ const t = i18n[lang] || i18n.pt;
   }
 
   .hero-title {
-    font-size: var(--fs-display);
-    line-height: var(--lh-display);
-    letter-spacing: var(--ls-display);
-    font-weight: var(--fw-bold);
-    margin-block: 0 var(--space-md);
-    background: linear-gradient(135deg, var(--color-text-primary) 0%, var(--color-primary) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    /* Reservado para uso futuro se override do hero title for necessário.
+       Não usamos H1 aqui porque o template: splash do Starlight já renderiza
+       o title do frontmatter como h1. */
+    display: none;
   }
 
   .hero-tagline {
-    font-size: var(--fs-headline-lg-mobile);
+    font-size: var(--fs-headline-md);
     font-weight: var(--fw-medium);
     color: var(--color-text-primary);
-    margin-block: 0 var(--space-md);
+    margin-block: var(--space-md) var(--space-md);
   }
 
   .hero-sub {
@@ -90,7 +84,6 @@ const t = i18n[lang] || i18n.pt;
   }
 
   @media (min-width: 768px) {
-    .hero-title { font-size: 4rem; }
     .hero-tagline { font-size: var(--fs-headline-lg); }
   }
 </style>

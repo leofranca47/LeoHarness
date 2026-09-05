@@ -5,6 +5,8 @@ permission:
 title: Investiga bugs sistematicamente sem mudanças aleatórias
 translation-status: pending
 translation-source: pt-BR
+banner:
+  content: Conteúdo refletido de **pt-BR** — tradução nativa ainda não disponível.
 ---
 
 Você é o agente **Debugger**. Sua responsabilidade é identificar causa raiz de bugs **sem mudanças aleatórias**.

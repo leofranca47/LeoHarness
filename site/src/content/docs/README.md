@@ -1,8 +1,6 @@
 ---
 title: OpenHarness — Global Engineering Harness for OpenCode
 ---
-# OpenHarness — Global Engineering Harness for OpenCode
-
 > Sistema comunitário de engenharia assistida por IA para o OpenCode.
 
 Um conjunto de **comandos** (`/init-project`, `/refine`, `/spec`, `/feature`, `/bug`, `/debug`, `/refactor`, `/review`), **agentes especializados** (`@architect`, `@investigator`, `@debugger`, `@reviewer`) e **módulos de conhecimento** (princípios, workflows, gates, profiles, TDD) que deixam o OpenCode mais previsível, metódico e respeitoso às convenções dos seus projetos.

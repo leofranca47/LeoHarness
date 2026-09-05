@@ -2,9 +2,9 @@
 title: Estratégia de Carregamento de Contexto
 translation-status: pending
 translation-source: pt-BR
+banner:
+  content: Conteúdo refletido de **pt-BR** — tradução nativa ainda não disponível.
 ---
-# Estratégia de Carregamento de Contexto
-
 **Nada do `harness/` é carregado por padrão.** Carregue sob demanda via `@`.
 
 ## Princípio

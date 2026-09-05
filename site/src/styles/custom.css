@@ -1,10 +1,9 @@
 /* =============================================================================
-   Custom CSS — Overrides sobre defaults do Starlight
+   Custom CSS — Overrides cirúrgicos sobre defaults do Starlight.
    Aplica tokens do design system "Obsidian Cybernetic Harness".
    -----------------------------------------------------------------------------
-   ATENÇÃO: este é o snapshot PRE-FIX; regras de layout aqui dentro
-   conflitavam com a grid nativa do Starlight. Foi reescrito depois
-   no commit fix. Mantido aqui para o commit feat.
+   Filosofia: usar overrides MÍNIMOS que NÃO competem com a grid nativa do
+   Starlight. Apenas: paleta, fontes, micro-ajustes de inline-code e tipografia.
    ============================================================================= */
 
 /* Fontes self-hosted via Fontsource */
@@ -13,7 +12,7 @@
 @import '@fontsource/jetbrains-mono/500.css';
 @import '@fontsource/jetbrains-mono/600.css';
 
-/* ---------- Starlight token overrides ---------- */
+/* ---------- 1. Starlight token overrides (paleta + tipografia) ---------- */
 :root {
   --sl-font: var(--font-ui);
   --sl-font-mono: var(--font-mono);
@@ -42,13 +41,13 @@
   --sl-color-hairline-light: var(--color-border-subtle);
   --sl-color-hairline-shade: var(--color-border-subtle);
 
-  /* Glow / shadows defaults do Starlight */
+  /* Shadows */
   --sl-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
   --sl-shadow-md: 0 4px 8px rgba(0, 0, 0, 0.4);
   --sl-shadow-lg: 0 12px 24px rgba(0, 0, 0, 0.5);
 }
 
-/* ---------- Typography baseline ---------- */
+/* ---------- 2. Body baseline (sem mexer em layout) ---------- */
 body {
   font-family: var(--font-ui);
   font-feature-settings: 'ss01', 'cv11';
@@ -56,42 +55,13 @@ body {
   color: var(--color-text-primary);
 }
 
-/* ---------- Layout 3-column conforme designMd ---------- */
-@media (min-width: 1025px) {
-  .main-frame {
-    display: grid;
-    grid-template-columns: var(--width-sidebar) 1fr var(--width-outline);
-    max-width: var(--width-content-max);
-    margin-inline: auto;
-  }
+/* ---------- 3. Headings — preserve defaults; override OF color/weight, NÃO size ---------- */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-ui);
+  font-weight: var(--fw-semibold);
 }
 
-/* Reading corridor para prose */
-.sl-markdown-content {
-  max-width: var(--width-reading-corridor);
-  margin-inline: auto;
-}
-
-/* ---------- Sidebar nav (ativo = border-left amber + bg warm) ---------- */
-starlight-menu-link a[aria-current="page"] {
-  border-left: 2px solid var(--color-primary);
-  background: rgba(255, 224, 67, 0.06);
-  color: var(--color-primary) !important;
-}
-
-starlight-menu-link a:hover {
-  background: var(--color-surface-elevated);
-  color: var(--color-text-primary) !important;
-}
-
-/* ---------- Header com frosted glass ---------- */
-header.header {
-  background: rgba(18, 18, 22, 0.8);
-  backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--color-border-subtle);
-}
-
-/* ---------- Inline code ---------- */
+/* ---------- 4. Inline code — micro visual upgrade ---------- */
 :not(pre) > code {
   font-family: var(--font-mono);
   font-size: var(--fs-code-inline);
@@ -102,32 +72,9 @@ header.header {
   padding: 0 0.25rem;
 }
 
-/* ---------- Headlines (Geist com tracking apertado) ---------- */
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-ui);
-  font-weight: var(--fw-semibold);
-  letter-spacing: var(--ls-headline-md);
-}
-
-h1 {
-  font-size: var(--fs-display);
-  line-height: var(--lh-display);
-  letter-spacing: var(--ls-display);
-  font-weight: var(--fw-bold);
-}
-
-h2 {
-  font-size: var(--fs-headline-lg);
-  line-height: var(--lh-headline-lg);
-  letter-spacing: var(--ls-headline-lg);
-}
-
-h3 {
-  font-size: var(--fs-headline-md);
-  line-height: var(--lh-headline-md);
-}
-
-@media (max-width: 768px) {
-  h1 { font-size: var(--fs-display-mobile); letter-spacing: var(--ls-headline-md); }
-  h2 { font-size: var(--fs-headline-lg-mobile); }
+/* ---------- 5. Reading corridor — limite a largura do prose ---------- */
+/* Escopo restrito para NÃO atingir áreas que o Starlight já controla. */
+.sl-markdown-content :where(p, ul, ol, table, blockquote) {
+  max-width: var(--width-reading-corridor);
+  margin-inline: auto;
 }

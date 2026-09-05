@@ -46,7 +46,9 @@ export default defineConfig({
       ],
       social: [],
       components: {
-        Header: './src/components/Header.astro',
+        // Header.astro custom removido no fix bug layout — Starlight nativo
+        // entrega o menu mobile (button popovertarget="starlight__sidebar") e
+        // o lang selector (<starlight-lang-select>) sem override.
       },
       customCss: [
         './src/styles/tokens.css',

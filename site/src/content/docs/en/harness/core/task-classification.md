@@ -1,8 +1,6 @@
 ---
 title: Classificação de Tarefas
 ---
-# Classificação de Tarefas
-
 Antes de agir, classifique. A classificação determina o workflow.
 
 ## Os 6 tipos

@@ -1,8 +1,6 @@
 ---
 title: "Modelo: Estratégia de Reasoning por Etapa"
 ---
-# Modelo: Estratégia de Reasoning por Etapa
-
 > Carregado sob demanda via `@harness/core/model-strategy.md` por comandos que precisam aplicar o nível de reasoning preferido da etapa.
 
 Este módulo descreve **o algoritmo de resolução** que o LLM deve seguir para aplicar a configuração de reasoning apropriada para cada etapa do OpenHarness, considerando o modelo atualmente selecionado. É o **único lugar** onde as regras de reasoning estão documentadas.

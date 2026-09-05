@@ -1,8 +1,6 @@
 ---
 title: "Template: Project Context"
 ---
-# Template: Project Context
-
 Template para os 5 arquivos gerados em `.opencode/context/` pelo comando `/init-project`.
 
 **Objetivo:** contexto pessoal (não versionado) que ajuda você a entender e trabalhar no projeto rapidamente.

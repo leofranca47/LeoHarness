@@ -1,8 +1,6 @@
 ---
 title: Critérios de Conclusão
 ---
-# Critérios de Conclusão
-
 **Tarefa não está pronta quando o código foi escrito.** Está pronta quando foi **validada e revisada**.
 
 ## O que constitui "pronto"
