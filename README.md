@@ -226,18 +226,6 @@ Os comandos deste harness declaram qual agent devem usar no frontmatter:
 | `agent: plan` | `/refine`, `/spec`, `/review` | Mudam o label do TUI para `plan` ao rodar |
 | `agent: build` | `/feature`, `/bug`, `/debug`, `/refactor`, `/init-project`, `/refresh-context` | Devem mudar o label para `build` ao rodar |
 
-#### Limitação conhecida (assimetria)
-
-Existe uma **assimetria observada**: comandos com `agent: plan` trocam o label do TUI corretamente (`build` → `plan`), mas comandos com `agent: build` **nem sempre** voltam de `plan` → `build` quando o usuário já estava em `plan`. O comportamento real (permissões de escrita, ferramentas habilitadas) **continua correto** — o build agent está ativo nos bastidores — apenas o **label visual** persiste em `plan`.
-
-**Workaround atual:** se você rodou `/refine` ou `/spec` (TUI em `plan`) e em seguida rodou `/feature` mas o label continua mostrando `plan`, **pressione `Tab` uma vez** para trocar manualmente. O comando `/feature` vai executar normalmente em modo `build` independente do label.
-
-#### Por que isso acontece
-
-O OpenCode ainda **não expõe uma API pública no SDK** para trocar o primary agent programaticamente. Plugins podem observar eventos (`command.executed`, `tui.command.execute`) e mostrar toasts, mas não conseguem forçar a troca de `build` ↔ `plan` no TUI.
-
-Esta é uma limitação **upstream do OpenCode**, não do harness. Quando o OpenCode adicionar essa capacidade ao SDK, este harness poderá oferecer um plugin opcional para automatizar a sincronia. Acompanhe em [https://github.com/anomalyco/opencode](https://github.com/anomalyco/opencode).
-
 ---
 
 ## 7. Comandos disponíveis
@@ -932,10 +920,6 @@ Este é um projeto comunitário, mas a estrutura é versionável. Sugestões:
 ### Funciona com OpenCode Web / TUI / IDE?
 
 Sim — comandos e agents funcionam em todas as interfaces que rodam sobre OpenCode ≥ 1.18.
-
-### Por que o label do TUI não muda para `build` quando rodo `/feature`?
-
-Limitação conhecida do OpenCode (não do harness). O comando `/feature` executa corretamente em modo `build`, mas o label do TUI pode permanecer em `plan` se você veio de `/refine` ou `/spec`. **Pressione `Tab`** uma vez para trocar manualmente. Detalhes completos em [Seção 6 — Trocar o primary agent no TUI](#trocar-o-primary-agent-no-tui-build--plan).
 
 ### Tem risco de quebrar algo?
 
